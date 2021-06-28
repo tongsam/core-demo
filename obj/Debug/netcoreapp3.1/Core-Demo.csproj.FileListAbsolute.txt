@@ -41,3 +41,4 @@ D:\Work_Betimes\ALL-Drive\Core-Demo\Core-Demo\bin\Debug\netcoreapp3.1\Serilog.Si
 D:\Work_Betimes\ALL-Drive\Core-Demo\Core-Demo\bin\Debug\netcoreapp3.1\Serilog.Sinks.Debug.dll
 D:\Work_Betimes\ALL-Drive\Core-Demo\Core-Demo\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll
 D:\Work_Betimes\ALL-Drive\Core-Demo\Core-Demo\obj\Debug\netcoreapp3.1\Core-Demo.csproj.CopyComplete
+D:\Work_Betimes\ALL-Drive\Core-Demo\Core-Demo\obj\Debug\netcoreapp3.1\Core-Demo.csprojAssemblyReference.cache

@@ -1,16 +1,18 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
-WORKDIR /app
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+WORKDIR /source
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
+# copy csproj and restore as distinct layers
+COPY *.csproj .
 RUN dotnet restore
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
+# copy and publish app and libraries
+COPY . .
+RUN dotnet publish -c release -o /app 
 
-# Build runtime image
+# final stage/image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+
+
 
 ENV ASPNETCORE_URLS=http://*:80
 ENV ASPNETCORE_ENVIRONMENT=”production”
@@ -18,5 +20,6 @@ ENV ASPNETCORE_ENVIRONMENT=”production”
 EXPOSE 80
 
 WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "core-demo.dll"]
+COPY --from=build /app .
+
+ENTRYPOINT ["dotnet", "Core-Demo.dll"]
