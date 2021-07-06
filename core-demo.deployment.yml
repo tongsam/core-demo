@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: core-demo
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      hostname: core-demo
+      containers:
+      - name: core-demo
+        image: btesbconregis1.azurecr.io/core-demo:lastest
+        ports:
+        - containerPort: 11307
+        resources:
+          requests:
+            cpu: 150m
+          limits:
+            cpu: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-demo
+spec:
+  ports:
+  - port: 80
+    targetPort: 11307
+  selector:
+    app: core-demo
