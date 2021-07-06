@@ -22,7 +22,7 @@ spec:
       hostname: core-demo
       containers:
       - name: core-demo
-        image: btesbconregis1.azurecr.io/core-demo:lastest
+        image: btesbconregis1.azurecr.io/core-demo:#{Build.BuildId}#
         ports:
         - containerPort: 11307
         resources:
